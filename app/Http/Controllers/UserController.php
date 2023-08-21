@@ -13,13 +13,39 @@ class UserController extends Controller
       "password" => "required|min:8|max:15"
     ];
 
+    private array $loginRules = [
+        "email" => "required",
+        "password" => "required"
+    ];
+
     public function register(Request $request)
     {
         $validatedData = $request->validate($this->registerRules);
         $validatedData["password"] = bcrypt($validatedData["password"]);
         $user = User::create($validatedData);
         auth()->login($user);
-
         return redirect()->route("dashboard.index");
+    }
+
+    public function login(Request $request)
+    {
+        $validateData = $request->validate($this->loginRules);
+
+        if (auth()->attempt(["email" => $validateData["email"], "password" => $validateData["password"]]))
+        {
+            $request->session()->regenerate();
+            $user = auth()->user();
+            return redirect()->route("dashboard.index")->with("name", $user->name);
+        }
+        else
+        {
+            return redirect()->route("home.index");
+        }
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route("home.index");
     }
 }

@@ -28,6 +28,11 @@ Route::get("/login", function (){
     return view("auth.login");
 })->name("auth.login");
 
+Route::post("/login", [UserController::class, "login"])->name("auth.login.post");
+
+Route::post("/logout", [UserController::class, "logout"])->name("auth.logout");
+
+
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->name("dashboard.index");
