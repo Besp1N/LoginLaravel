@@ -1,13 +1,14 @@
 @extends("layouts.app")
 @section("title", "Home")
 
+
 @section("content")
-    <section>
+    <section class="register_login">
         <div>
-            <a href="{{route()}}">Register</a>
+            <a href="{{route("auth.register")}}">Register</a>
         </div>
         <div>
-            <a href="{{}}">Login</a>
+            <a href="{{route("auth.login")}}">Login</a>
         </div>
     </section>
 @endsection
