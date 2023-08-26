@@ -3,13 +3,17 @@
 
 @section("content")
     @auth
-        <p>zalogowany jestes</p>
-        <p>siema {{session("name")}}</p>
+        <p>Welcome {{Auth::user()->name}}</p>
         <form action="{{route("auth.logout")}}" method="post">
             @csrf
-            <button>Log out</button>
+            <button class="logout">Log out</button>
         </form>
+
+        <p>add your post!</p>
     @else
-        <p>sadge</p>
+        <p>You are not logged in. Redirecting to home page</p>
+
+        {{header("refresh:3;url=".route("home.index"))}}
+        {{exit()}}
     @endauth
 @endsection

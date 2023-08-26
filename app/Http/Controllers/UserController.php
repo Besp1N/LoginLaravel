@@ -24,7 +24,7 @@ class UserController extends Controller
         $validatedData["password"] = bcrypt($validatedData["password"]);
         $user = User::create($validatedData);
         auth()->login($user);
-        return redirect()->route("dashboard.index");
+        return redirect()->route("dashboard.index")->with("name", $user->name);
     }
 
     public function login(Request $request)
@@ -42,10 +42,16 @@ class UserController extends Controller
             return redirect()->route("home.index");
         }
     }
-
     public function logout()
     {
         auth()->logout();
         return redirect()->route("home.index");
     }
+
+    public function dashboard()
+    {
+        $user = auth()->user(); // Pobranie zalogowanego użytkownika
+        return view('dashboard.index', ['name' => $user->name]);
+    }
+
 }
