@@ -48,10 +48,6 @@ class UserController extends Controller
         return redirect()->route("home.index");
     }
 
-    public function dashboard()
-    {
-        $user = auth()->user(); // Pobranie zalogowanego użytkownika
-        return view('dashboard.index', ['name' => $user->name]);
-    }
+
 
 }

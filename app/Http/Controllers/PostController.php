@@ -10,6 +10,12 @@ class PostController extends Controller
     private array $rules = [
       "content" => "required"
     ];
+    public function dashboard()
+    {
+        $user = auth()->user();
+        return view('dashboard.index', ['name' => $user->name]);
+    }
+
     public function store(Post $post, Request $request)
     {
         $validatedData = $request->validate($this->rules);
@@ -19,5 +25,16 @@ class PostController extends Controller
             "user_id" => $user->id
         ]);
         return redirect()->route("dashboard.index");
+    }
+
+    public function showPosts()
+    {
+        $user = auth()->user();
+        $posts = $user->posts;
+
+        $test = "dupa";
+
+        return view('dashboard.index', ["posts" => $posts]);
+
     }
 }
