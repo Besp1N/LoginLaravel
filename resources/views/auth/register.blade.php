@@ -3,7 +3,7 @@
 
 @section("content")
 
-    <form action="{{route("")}}" method="post">
+    <form action="{{route("auth.register.post")}}" method="post">
         @csrf
         <div class="inputs">
             <span>Register</span>
