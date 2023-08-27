@@ -24,7 +24,7 @@ class UserController extends Controller
         $validatedData["password"] = bcrypt($validatedData["password"]);
         $user = User::create($validatedData);
         auth()->login($user);
-        return redirect()->route("dashboard.index")->with("name", $user->name);
+        return redirect()->route("dashboard.index");
     }
 
     public function login(Request $request)

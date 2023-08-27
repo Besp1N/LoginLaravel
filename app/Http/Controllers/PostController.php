@@ -29,7 +29,7 @@ class PostController extends Controller
         ]);
         $posts = $user->posts;
         $allPosts = Post::where("user_id", "!=", $user->id)->get();
-        return view("dashboard.index", ["posts" => $posts, "allPosts" => $allPosts]);
+        return redirect()->route("dashboard.index");
     }
 
     public function delete(Post $post)
