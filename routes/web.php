@@ -34,6 +34,8 @@ Route::post("/login", [UserController::class, "login"])->name("auth.login.post")
 Route::post("/logout", [UserController::class, "logout"])->name("auth.logout");
 
 
-Route::get('/dashboard', [UserController::class, 'dashboard'])->name("dashboard.index");
+Route::get('/dashboard', [PostController::class, 'dashboard'])->name("dashboard.index");
 
 Route::post("/dashboard",[PostController::class, "store"])->name("dashboard.store");
+Route::delete("/dashboard/{post}", [PostController::class, "delete"])->name("dashboard.destroy");
+

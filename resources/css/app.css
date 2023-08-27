@@ -65,4 +65,8 @@ form .inputs span{
     left: 0;
     padding: 10px;
 }
+.delete{
+    position: absolute;
+    left: 0;
+}
 
