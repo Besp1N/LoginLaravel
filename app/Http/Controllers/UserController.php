@@ -34,8 +34,7 @@ class UserController extends Controller
         if (auth()->attempt(["email" => $validateData["email"], "password" => $validateData["password"]]))
         {
             $request->session()->regenerate();
-            $user = auth()->user();
-            return redirect()->route("dashboard.index")->with("name", $user->name);
+            return redirect()->route("dashboard.index");
         }
         else
         {

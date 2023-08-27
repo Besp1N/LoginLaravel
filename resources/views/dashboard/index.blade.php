@@ -20,6 +20,18 @@
         @foreach($posts as $post)
             <li>
                 {{$post->content}}
+
+                <form class="small_form" method="post" action="{{route("dashboard.destroy", $post->id)}}">
+                    @csrf
+                    @method("DELETE")
+                    <button class="delete" type="submit">DELETE</button>
+                </form>
+            </li>
+        @endforeach
+        <p>All posts</p>
+        @foreach($allPosts as $post)
+            <li>
+                {{$post->content}}
             </li>
         @endforeach
 
